@@ -593,3 +593,75 @@ body {
         font-size: 1.5rem;
     }
 }
+
+/* About Page Styles */
+.about-section img {
+    height: 300px;
+    width: 300px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.our-story-section .card,
+.team-section .card,
+.testimonials-section .card {
+    height: 500px;
+    width: 300px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.our-story-section .card:hover,
+.team-section .card:hover,
+.testimonials-section .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.amenities-section .amenity-item i {
+    color: var(--primary-color);
+}
+
+.team-section .card-img-top {
+    height: 300px;
+    width: 300px;
+    object-fit: cover;
+}
+
+.team-section .social-links a {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.team-section .social-links a:hover {
+    color: #c89666;
+}
+
+.testimonials-section .card {
+    background-color: #f8f9fa;
+    border: none;
+}
+
+.testimonials-section .card-body {
+    padding-top: 30px;
+}
+
+.testimonials-section .card-body::before {
+    content: '\201C';
+    font-size: 4rem;
+    position: absolute;
+    top: -20px;
+    left: 20px;
+    color: var(--primary-color);
+    opacity: 0.3;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+    .about-section h2,
+    .our-story-section h2,
+    .amenities-section h2,
+    .team-section h2,
+    .testimonials-section h2 {
+        font-size: 2rem;
+    }
+}
