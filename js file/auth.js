@@ -71,26 +71,26 @@ const handleRegister = (event) => {
       });
   };
   
-//   const handleLogout = (event) => {
-//     event.preventDefault();
-//     const token = localStorage.getItem("authToken");
-//     console.log(token);
+  const handleLogout = (event) => {
+    event.preventDefault();
+    const token = localStorage.getItem("authToken");
+    console.log(token);
   
-//     fetch("https://online-course-rose.vercel.app/Student/logout/", {
-//       method: "GET",
-//       headers: {
-//         "Content-Type": "application/json",
-//         Authorization: `Token ${token}`,
-//       },
-//     })
-//       .then((res) => res.json())
-//       .then((data) => {
-//         console.log(data);
-//         localStorage.removeItem("authToken");
-//         localStorage.removeItem("user_id");
-//         window.location.href = "index.html";
-//       });
-//   };
+    fetch("http://127.0.0.1:8000/authontication/logout/", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        localStorage.removeItem("authToken");
+        localStorage.removeItem("user_id");
+        window.location.href = "index.html";
+      });
+  };
   
   
   

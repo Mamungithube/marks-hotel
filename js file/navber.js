@@ -1,10 +1,70 @@
-
 fetch("navber.html")
   .then((res) => res.text())
   .then((data) => {
     document.getElementById("navbar").innerHTML = data;
 
-    const navElement = document.getElementById("nav-element");
+    const navElement = document.getElementById("auth");
+    const token = localStorage.getItem("authToken");
+
+    if (token) {
+      console.log(token);
+      fetch("http://127.0.0.1:8000/authontication/admins/", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `token ${token}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((result) => {
+          if (result.is_admin) {
+            navElement.innerHTML += `
+                    <a href="#booking" class="booking-btn">Booking Now</a>
+                        <div class="dropdown">
+                            <a class="booking-btn dropdown-toggle dropdown-toggle-split" type="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                profile
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                <li><a class="dropdown-item" href="./edit_profie.html">Edit profile</a></li>
+                                <li><a class="dropdown-item" href="./edit_profie.html">Change password</a></li>
+                                <li><a class="dropdown-item" href="./admin deshboard.html">My deshboard</a></li>
+                                <li><a class="dropdown-item" href="index.html" onclick="handleLogout(event)">Sign Out</a></li>
+                            </ul>
+                        </div>
+            `;
+          } else {
+            navElement.innerHTML += `
+                      <a href="#booking" class="booking-btn">Booking Now</a>
+                        <div class="dropdown">
+                            <a class="booking-btn dropdown-toggle dropdown-toggle-split" type="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                profile
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                <li><a class="dropdown-item" href="./edit_profie.html">Edit profile</a></li>
+                                <li><a class="dropdown-item" href="./edit_profie.html">Change password</a></li>
+                                <li><a class="dropdown-item" href="./user deshboard.html">My deshboard</a></li>
+                                <li><a class="dropdown-item" href="index.html" onclick="handleLogout(event)">Sign Out</a></li>
+                            </ul>
+                        </div>
+            `;
+          }
+        });
+    } else {
+      navElement.innerHTML += `
+      <a href="loginpage.html" class="booking-btn">Sign-in</a>
+      `;
+    }
+  });
+
+// // main nevber
+
+  fetch("main navber.html")
+  .then((res) => res.text())
+  .then((data) => {
+    document.getElementById("main_navbar").innerHTML = data;
+    const navElement = document.getElementById("navbarNav");
     const token = localStorage.getItem("authToken");
 
     if (token) {
@@ -19,89 +79,51 @@ fetch("navber.html")
         .then((result) => {
           if (result.is_admin) {
             navElement.innerHTML += `
-            <li class="nav-item">
-            <a class="nav-link active text-secondary" aria-current="page" href="index.html">
-                <i class="fas fa-home"></i> Home
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="All_Course.html">All Course</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="All_teacher.html">All Teacher</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="about.html">About</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="Contect_us.html">Contact Us</a>
-        </li>
-    </ul>
-    <div class="d-flex" style="padding-left: 380px;">
-<li>
-  <h5><a class="nav-link" href="Teacher_deshboard.html">Admin Deshboard</a></h5>
-</li>
-<li>
-  <h5><a class="nav-link" href="index.html" onclick="handleLogout(event)">Logout</a></h5>
-</li>
-</div>
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link active" href="./index.html">Home</a>
+              </li>
+            </ul>
             `;
           } else {
             navElement.innerHTML += `
-            <li class="nav-item">
-            <a class="nav-link active text-secondary" aria-current="page" href="index.html">
-                <i class="fas fa-home"></i> Home
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="All_Course.html">All Course</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="All_teacher.html">All Teacher</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="About.html">About</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="Contect_us.html">Contact Us</a>
-        </li>
-    </ul>
-    <div class="d-flex" style="padding-left: 500px;">
-<li>
-  <h5><a class="nav-link" href="Student_deshboard.html">profile</a></h5>
-</li>
-<li>
-  <h5><a class="nav-link" href="index.html" onclick="handleLogout(event)">Logout</a></h5>
-</li>
-</div>
+        
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="./index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#room">Rooms</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#about">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#survice">Survice</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#footer">News</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./contact.html">Contact</a>
+                </li>
+            </ul>
             `;
           }
         });
     } else {
       navElement.innerHTML += `
-      <li class="nav-item">
-      <a class="nav-link active text-secondary" aria-current="page" href="index.html">
-          <i class="fas fa-home"></i> Home
-      </a>
-  </li>
-  <li class="nav-item">
-      <a class="nav-link" href="About.html">About</a>
-  </li>
-  <li class="nav-item">
-      <a class="nav-link" href="Contect_us.html">Contact Us</a>
-  </li>
-</ul>
-<div class="d-flex" style="padding-left: 650px;">
-<li class="login">
-                <h5><a class="nav-link" href="login.html">sign in</a></h5>
-              </li>
-              <li class="nav-item">
-                  <h5><a class="nav-link" href="registetion.html">sign up</a></h5>
-              </li>
-
-
-
-</div>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="./index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#survice">Survice</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#footer">News</a>
+                </li>
+            </ul>
       `;
     }
   });
