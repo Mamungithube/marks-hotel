@@ -7,7 +7,6 @@ fetch("navber.html")
     const token = localStorage.getItem("authToken");
 
     if (token) {
-      console.log(token);
       fetch("http://127.0.0.1:8000/authontication/admins/", {
         method: "GET",
         headers: {
@@ -29,7 +28,7 @@ fetch("navber.html")
                                 <li><a class="dropdown-item" href="./edit_profie.html">Edit profile</a></li>
                                 <li><a class="dropdown-item" href="./edit_profie.html">Change password</a></li>
                                 <li><a class="dropdown-item" href="./admin deshboard.html">My deshboard</a></li>
-                                <li><a class="dropdown-item" href="index.html" onclick="handleLogout(event)">Sign Out</a></li>
+                                <li><a class="dropdown-item" href="" onclick="handleLogout(event)">Sign Out</a></li>
                             </ul>
                         </div>
             `;
@@ -45,7 +44,7 @@ fetch("navber.html")
                                 <li><a class="dropdown-item" href="./edit_profie.html">Edit profile</a></li>
                                 <li><a class="dropdown-item" href="./edit_profie.html">Change password</a></li>
                                 <li><a class="dropdown-item" href="./user deshboard.html">My deshboard</a></li>
-                                <li><a class="dropdown-item" href="index.html" onclick="handleLogout(event)">Sign Out</a></li>
+                                <li><a class="dropdown-item" href="" onclick="handleLogout(event)">Sign Out</a></li>
                             </ul>
                         </div>
             `;
@@ -53,7 +52,7 @@ fetch("navber.html")
         });
     } else {
       navElement.innerHTML += `
-      <a href="loginpage.html" class="booking-btn">Sign-in</a>
+      <a href="" class="booking-btn">Sign-in</a>
       `;
     }
   });

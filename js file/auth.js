@@ -73,26 +73,42 @@ const handleRegister = (event) => {
   
   const handleLogout = (event) => {
     event.preventDefault();
+
     const token = localStorage.getItem("authToken");
-    console.log(token);
-  
+    console.log("Auth Token:", token);
+
+    if (!token) {
+        console.error("No token found! User might not be logged in.");
+        return;
+    }
+
     fetch("http://127.0.0.1:8000/authontication/logout/", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Token ${token}`,
-      },
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Token ${token}`,
+        },
     })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        localStorage.removeItem("authToken");
-        localStorage.removeItem("user_id");
-        window.location.href = "index.html";
-      });
-  };
+    .then((res) => {
+        console.log("Response Status:", res.status);  // ✅ API স্ট্যাটাস দেখাও
+        return res.json();
+    })
+    .then((data) => {
+        console.log("Logout Response:", data);  // ✅ রেসপন্স কনসোলে দেখাও
+        if (res.status === 204) {
+            localStorage.removeItem("authToken");
+            localStorage.removeItem("user_id");
+            window.location.href = "loginpage.html";  // ✅ সফল হলে রিডাইরেক্ট করো
+        } else {
+            console.error("Logout Failed:", data);
+        }
+    })
+    .catch((error) => console.error("Fetch Error:", error));
+};
+
   
-  
+
+
   
   
   
