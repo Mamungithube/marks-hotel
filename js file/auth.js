@@ -70,13 +70,18 @@ const handleRegister = (event) => {
         alert("Login failed: " + err.message);
       });
   };
-  
-  const handleLogout = (event) => {
+  document.addEventListener("DOMContentLoaded", function () {
+    const logoutButton = document.querySelector(".dropdown-item");
+    if (logoutButton) {
+        logoutButton.addEventListener("click", handleLogout);
+    }
+});
+
+
+function handleLogout(event) {
     event.preventDefault();
-
+    console.log(event);
     const token = localStorage.getItem("authToken");
-    console.log("Auth Token:", token);
-
     if (!token) {
         console.error("No token found! User might not be logged in.");
         return;
@@ -90,21 +95,23 @@ const handleRegister = (event) => {
         },
     })
     .then((res) => {
-        console.log("Response Status:", res.status);  // ✅ API স্ট্যাটাস দেখাও
-        return res.json();
-    })
-    .then((data) => {
-        console.log("Logout Response:", data);  // ✅ রেসপন্স কনসোলে দেখাও
         if (res.status === 204) {
             localStorage.removeItem("authToken");
             localStorage.removeItem("user_id");
-            window.location.href = "loginpage.html";  // ✅ সফল হলে রিডাইরেক্ট করো
+            window.location.href = "loginpage.html";
         } else {
+            return res.json();
+        }
+    })
+    .then((data) => {
+        if (data) {
             console.error("Logout Failed:", data);
         }
     })
     .catch((error) => console.error("Fetch Error:", error));
-};
+}
+
+
 
   
 

@@ -28,7 +28,7 @@ fetch("navber.html")
                                 <li><a class="dropdown-item" href="./edit_profie.html">Edit profile</a></li>
                                 <li><a class="dropdown-item" href="./edit_profie.html">Change password</a></li>
                                 <li><a class="dropdown-item" href="./admin deshboard.html">My deshboard</a></li>
-                                <li><a class="dropdown-item" href="" onclick="handleLogout(event)">Sign Out</a></li>
+                                <li><button class="dropdown-item" onclick="handleLogout(event)">Sign Out</button></li>
                             </ul>
                         </div>
             `;
@@ -44,7 +44,7 @@ fetch("navber.html")
                                 <li><a class="dropdown-item" href="./edit_profie.html">Edit profile</a></li>
                                 <li><a class="dropdown-item" href="./edit_profie.html">Change password</a></li>
                                 <li><a class="dropdown-item" href="./user deshboard.html">My deshboard</a></li>
-                                <li><a class="dropdown-item" href="" onclick="handleLogout(event)">Sign Out</a></li>
+                                <li><button class="dropdown-item" onclick="handleLogout(event)">Sign Out</button></li>
                             </ul>
                         </div>
             `;
@@ -52,7 +52,7 @@ fetch("navber.html")
         });
     } else {
       navElement.innerHTML += `
-      <a href="" class="booking-btn">Sign-in</a>
+      <a href="./loginpage.html" class="booking-btn">Sign-in</a>
       `;
     }
   });
@@ -82,6 +82,9 @@ fetch("navber.html")
               <li class="nav-item">
                 <a class="nav-link active" href="./index.html">Home</a>
               </li>
+              <li class="nav-item">
+                    <a class="nav-link" href="./show reviews.html">Reviews</a>
+                </li>
             </ul>
             `;
           } else {
@@ -101,7 +104,7 @@ fetch("navber.html")
                     <a class="nav-link" href="#survice">Survice</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#footer">News</a>
+                    <a class="nav-link" href="./show reviews.html">Reviews</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="./contact.html">Contact</a>
