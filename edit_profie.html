@@ -41,13 +41,7 @@
                         </div>
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link active" href="#perMASKSl-info">PerMASKSl Information</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#account-settings">Account Settings</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#preferences">Preferences</a>
+                                <a class="nav-link" href="#changePasswordForm">Change Password</a>
                             </li>
                         </ul>
                     </div>
@@ -81,65 +75,26 @@
                             </div>
                         </div>
 
-                        <div id="account-settings" class="mb-5">
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </form>
+                    <form onsubmit="changePassword(event)" id="changePasswordForm">
+                        <div id="account-settings" class="mb-5 mt-5">
                             <h3>Account Settings</h3>
                             <div class="mb-3">
-                                <label for="username" class="form-label">Username</label>
-                                <input type="text" class="form-control" id="username" value="johndoe123">
+                                <label for="oldPassword" class="form-label">Old Password</label>
+                                <input type="password" class="form-control" id="oldPassword" required>
                             </div>
                             <div class="mb-3">
                                 <label for="newPassword" class="form-label">New Password</label>
-                                <input type="password" class="form-control" id="newPassword">
+                                <input type="password" class="form-control" id="newPassword" required>
                             </div>
                             <div class="mb-3">
                                 <label for="confirmPassword" class="form-label">Confirm New Password</label>
-                                <input type="password" class="form-control" id="confirmPassword">
+                                <input type="password" class="form-control" id="confirmPassword" required>
+                                <small id="passwordError" style="color: red; display: none;">Passwords do not match!</small>
                             </div>
+                            <button type="submit" id="changePassBtn" class="btn btn-primary">Change Password</button>
                         </div>
-
-                        <div id="preferences" class="mb-5">
-                            <h3>Preferences</h3>
-                            <div class="mb-3">
-                                <label class="form-label">Room Preferences</label>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="nonSmoking" checked>
-                                    <label class="form-check-label" for="nonSmoking">Non-smoking room</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="highFloor">
-                                    <label class="form-check-label" for="highFloor">High floor</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="quietRoom">
-                                    <label class="form-check-label" for="quietRoom">Quiet room</label>
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="dietaryRestrictions" class="form-label">Dietary Restrictions</label>
-                                <select class="form-select" id="dietaryRestrictions">
-                                    <option value="">None</option>
-                                    <option value="vegetarian">Vegetarian</option>
-                                    <option value="vegan">Vegan</option>
-                                    <option value="glutenFree">Gluten-free</option>
-                                    <option value="lactoseFree">Lactose-free</option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Communication Preferences</label>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="emailNotifications" checked>
-                                    <label class="form-check-label" for="emailNotifications">Receive email
-                                        notifications</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="smsNotifications">
-                                    <label class="form-check-label" for="smsNotifications">Receive SMS
-                                        notifications</label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary">Save Changes</button>
                     </form>
                 </div>
             </div>
@@ -149,6 +104,7 @@
     <!-- Footer -->
     <div id="footer"></div>
     <script src="./js file/footer.js"></script>
+    <script src="./js file/edit_profile.js"></script>
 
     <!-- Bootstrap 5 JS and Popper.js -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
