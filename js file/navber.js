@@ -15,8 +15,10 @@ fetch("navber.html")
         },
       })
         .then((response) => response.json())
-        .then((result) => {
-          if (result.is_admin) {
+        .then((Data) => {
+          console.log(Data);
+          if (Data.is_admin) {
+            console.log("admin");
             navElement.innerHTML += `
                     <a href="#booking" class="booking-btn">Booking Now</a>
                         <div class="dropdown">
@@ -33,6 +35,7 @@ fetch("navber.html")
                         </div>
             `;
           } else {
+            console.log("user");
             navElement.innerHTML += `
                       <a href="#booking" class="booking-btn">Booking Now</a>
                         <div class="dropdown">
@@ -43,7 +46,7 @@ fetch("navber.html")
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 <li><a class="dropdown-item" href="./edit_profie.html">Edit profile</a></li>
                                 <li><a class="dropdown-item" href="./edit_profie.html">Change password</a></li>
-                                <li><a class="dropdown-item" href="./user deshboard.html">My deshboard</a></li>
+                                <li><a class="dropdown-item" href="./admin deshboard.html">My deshboard</a></li>
                                 <li><button class="dropdown-item" onclick="handleLogout(event)">Sign Out</button></li>
                             </ul>
                         </div>
@@ -56,10 +59,10 @@ fetch("navber.html")
       `;
     }
   });
+  
+// main nevber
 
-// // main nevber
-
-  fetch("main navber.html")
+fetch("main navber.html")
   .then((res) => res.text())
   .then((data) => {
     document.getElementById("main_navbar").innerHTML = data;
@@ -75,8 +78,9 @@ fetch("navber.html")
         },
       })
         .then((response) => response.json())
-        .then((result) => {
-          if (result.is_admin) {
+        .then((Data) => {
+          if (Data.is_admin) {
+            console.log("admin");
             navElement.innerHTML += `
             <ul class="navbar-nav ms-auto">
               <li class="nav-item">
@@ -88,8 +92,9 @@ fetch("navber.html")
             </ul>
             `;
           } else {
+            console.log("user");
             navElement.innerHTML += `
-        
+
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
                     <a class="nav-link active" href="./index.html">Home</a>
@@ -129,3 +134,155 @@ fetch("navber.html")
       `;
     }
   });
+
+
+// fetch("navber.html")
+//   .then((res) => res.text())
+//   .then((data) => {
+//     document.getElementById("navbar").innerHTML = data;
+
+//     const navElement = document.getElementById("auth");
+//     const token = localStorage.getItem("authToken");
+
+//     if (token) {
+//       fetch("http://127.0.0.1:8000/authontication/admins/", {
+//         method: "GET",
+//         headers: {
+//           "Content-Type": "application/json",
+//           Authorization: `token ${token}`,
+//         },
+//       })
+//         .then((response) => {
+//           if (!response.ok) {
+//             throw new Error('Network response was not ok');
+//           }
+//           return response.json();
+//         })
+//         .then((Data) => {
+//           console.log("API Response:", Data); // API রেসপন্স লগ করুন
+//           if (Data.is_admin) { 
+//             navElement.innerHTML += `
+//                     <a href="#booking" class="booking-btn">Booking Now</a>
+//                         <div class="dropdown">
+//                             <a class="booking-btn dropdown-toggle dropdown-toggle-split" type="button"
+//                                 data-bs-toggle="dropdown" aria-expanded="false">
+//                                 profile
+//                             </a>
+//                             <ul class="dropdown-menu dropdown-menu-dark">
+//                                 <li><a class="dropdown-item" href="./edit_profie.html">Edit profile</a></li>
+//                                 <li><a class="dropdown-item" href="./edit_profie.html">Change password</a></li>
+//                                 <li><a class="dropdown-item" href="./admin deshboard.html">My deshboard</a></li>
+//                                 <li><button class="dropdown-item" onclick="handleLogout(event)">Sign Out</button></li>
+//                             </ul>
+//                         </div>
+//             `;
+//           } else {
+//             navElement.innerHTML += `
+//                       <a href="#booking" class="booking-btn">Booking Now</a>
+//                         <div class="dropdown">
+//                             <a class="booking-btn dropdown-toggle dropdown-toggle-split" type="button"
+//                                 data-bs-toggle="dropdown" aria-expanded="false">
+//                                 profile
+//                             </a>
+//                             <ul class="dropdown-menu dropdown-menu-dark">
+//                                 <li><a class="dropdown-item" href="./edit_profie.html">Edit profile</a></li>
+//                                 <li><a class="dropdown-item" href="./edit_profie.html">Change password</a></li>
+//                                 <li><a class="dropdown-item" href="./user deshboard.html">My deshboard</a></li>
+//                                 <li><button class="dropdown-item" onclick="handleLogout(event)">Sign Out</button></li>
+//                             </ul>
+//                         </div>
+//             `;
+//           }
+//         })
+//         .catch((error) => {
+//           console.error('Error:', error);
+//         });
+//     } else {
+//       navElement.innerHTML += `
+//       <a href="./loginpage.html" class="booking-btn">Sign-in</a>
+//       `;
+//     }
+//   });
+
+// // // main nevber
+
+// fetch("main navber.html")
+//   .then((res) => res.text())
+//   .then((data) => {
+//     document.getElementById("main_navbar").innerHTML = data;
+//     const navElement = document.getElementById("navbarNav");
+//     const token = localStorage.getItem("authToken");
+
+//     if (token) {
+//       fetch("http://127.0.0.1:8000/authontication/admins/", {
+//         method: "GET",
+//         headers: {
+//           "Content-Type": "application/json",
+//           Authorization: `token ${token}`,
+//         },
+//       })
+//         .then((response) => {
+//           if (!response.ok) {
+//             throw new Error('Network response was not ok');
+//           }
+//           return response.json();
+//         })
+//         .then((Data) => {
+//           // Data = 
+//           console.log("API Response:", Data); // API রেসপন্স লগ করুন
+//           if (Data.is_admin) { // সঠিকভাবে চেক করুন
+//             navElement.innerHTML += `
+//             <ul class="navbar-nav ms-auto">
+//               <li class="nav-item">
+//                 <a class="nav-link active" href="./index.html">Home</a>
+//               </li>
+//               <li class="nav-item">
+//                     <a class="nav-link" href="./show reviews.html">Reviews</a>
+//                 </li>
+//             </ul>
+//             `;
+//           } else {
+//             navElement.innerHTML += `
+        
+//             <ul class="navbar-nav ms-auto">
+//                 <li class="nav-item">
+//                     <a class="nav-link active" href="./index.html">Home</a>
+//                 </li>
+//                 <li class="nav-item">
+//                     <a class="nav-link" href="#room">Rooms</a>
+//                 </li>
+//                 <li class="nav-item">
+//                     <a class="nav-link" href="#about">About Us</a>
+//                 </li>
+//                 <li class="nav-item">
+//                     <a class="nav-link" href="#survice">Survice</a>
+//                 </li>
+//                 <li class="nav-item">
+//                     <a class="nav-link" href="./show reviews.html">Reviews</a>
+//                 </li>
+//                 <li class="nav-item">
+//                     <a class="nav-link" href="./contact.html">Contact</a>
+//                 </li>
+//             </ul>
+//             `;
+//           }
+//         })
+//         .catch((error) => {
+//           console.error('Error:', error);
+//         });
+//     } else {
+//       navElement.innerHTML += `
+//             <ul class="navbar-nav ms-auto">
+//                 <li class="nav-item">
+//                     <a class="nav-link active" href="./index.html">Home</a>
+//                 </li>
+//                 <li class="nav-item">
+//                     <a class="nav-link" href="#survice">Survice</a>
+//                 </li>
+//                 <li class="nav-item">
+//                     <a class="nav-link" href="#footer">News</a>
+//                 </li>
+//             </ul>
+//       `;
+//     }
+//   });
