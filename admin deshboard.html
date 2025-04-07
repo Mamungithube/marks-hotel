@@ -88,7 +88,8 @@
                 </div>
             </nav>
             <!-- show employ -->
-            <div class="container-fluid my-5">
+            <hr>
+            <div class="container-fluid">
 
                 <h2 class="text-center mb-4">Employee List</h2>
 
@@ -103,50 +104,180 @@
                                 <th>Phone No</th>
                                 <th>Employee ID</th>
                                 <th>Salary</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody id="employee-data">
-                            <!-- API Data Show Here -->
                         </tbody>
                     </table>
                 </div>
 
             </div>
 
+            <h2>Add New Employee</h2>
+            <form id="employee-form" class="">
+                <input type="text" id="name" placeholder="Name" required><br><br>
+                <input type="text" id="education" placeholder="Education" required><br><br>
+                <input type="text" id="address" placeholder="Address" required><br><br>
+                <input type="text" id="phone_no" placeholder="Phone No" required><br><br>
+                <input type="text" id="Salary" placeholder="Salary" required><br><br>
+                <button type="submit" class="btn btn-warning">Add Employee</button>
+            </form>
 
-
-
-
-
-
-
-
-
-            <!-- JS to Fetch API -->
+            
+            <!-- JS Code
             <script>
+            // Fetch Employee Data and Show in Table
+            function loadEmployeeData() {
                 fetch('http://127.0.0.1:8000/employees_api/employees_data/')
                     .then(response => response.json())
                     .then(data => {
                         const tableBody = document.getElementById('employee-data');
+                        tableBody.innerHTML = "";  // Clear Previous Data
                         data.forEach(employee => {
+                            console.log(employee);
                             const row = `
-                <tr>
-                    <td>${employee.id}</td>
-                    <td>${employee.name}</td>
-                    <td>${employee.education}</td>
-                    <td>${employee.address}</td>
-                    <td>${employee.phone_no}</td>
-                    <td>${employee.employee_id}</td>
-                </tr>
-            `;
+                                <tr>
+                                    <td>${employee.id}</td>
+                                    <td>${employee.name}</td>
+                                    <td>${employee.education}</td>
+                                    <td>${employee.address}</td>
+                                    <td>${employee.phone_no}</td>
+                                    <td>${employee.employee_id}</td>
+                                    <td>${employee.Salary}</td>
+                                </tr>
+                            `;
                             tableBody.innerHTML += row;
                         });
                     })
                     .catch(error => {
                         console.error('Error fetching data:', error);
                     });
+            }
+            
+            // Add Employee Data to API
+            document.getElementById('employee-form').addEventListener('submit', function (e) {
+                e.preventDefault();
+            
+                const employeeData = {
+                    name: document.getElementById('name').value,
+                    education: document.getElementById('education').value,
+                    address: document.getElementById('address').value,
+                    phone_no: document.getElementById('phone_no').value,
+                    Salary: document.getElementById('Salary').value,
+                };
+            
+                fetch('http://127.0.0.1:8000/employees_api/employees_data/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(employeeData)
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            alert('Employee Added Successfully!');
+                            document.getElementById('employee-form').reset();
+                            loadEmployeeData(); // Reload Data
+                        } else {
+                            alert('Failed to Add Employee');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            });
+            
+            // Initial Data Load
+            loadEmployeeData();
+            </script> -->
 
+            <script>
+            // Load Employee Data
+            function loadEmployeeData() {
+                fetch('http://127.0.0.1:8000/employees_api/employees_data/')
+                    .then(response => response.json())
+                    .then(data => {
+                        const tableBody = document.getElementById('employee-data');
+                        tableBody.innerHTML = "";
+                        data.forEach(employee => {
+                            const row = `
+                                <tr>
+                                    <td>${employee.id}</td>
+                                    <td>${employee.name}</td>
+                                    <td>${employee.education}</td>
+                                    <td>${employee.address}</td>
+                                    <td>${employee.phone_no}</td>
+                                    <td>${employee.employee_id}</td>
+                                    <td>${employee.Salary}</td>
+                                    <td><button class="btn btn-danger" onclick="deleteEmployee(${employee.id})">Delete</button></td>
+                                </tr>
+                            `;
+                            tableBody.innerHTML += row;
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Error fetching data:', error);
+                    });
+            }
+            
+            // Add Employee Data
+            document.getElementById('employee-form').addEventListener('submit', function (e) {
+                e.preventDefault();
+            
+                const employeeData = {
+                    name: document.getElementById('name').value,
+                    education: document.getElementById('education').value,
+                    address: document.getElementById('address').value,
+                    phone_no: document.getElementById('phone_no').value,
+                    Salary: document.getElementById('Salary').value,
+                };
+            
+                fetch('http://127.0.0.1:8000/employees_api/employees_data/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(employeeData)
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            alert('Employee Added Successfully!');
+                            document.getElementById('employee-form').reset();
+                            loadEmployeeData();
+                        } else {
+                            alert('Failed to Add Employee');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            });
+            
+            // Delete Employee Data
+            function deleteEmployee(id) {
+                if (confirm('Are you sure you want to delete this employee?')) {
+                    fetch(`http://127.0.0.1:8000/employees_api/employees_data/${id}/`, {
+                        method: 'DELETE',
+                    })
+                        .then(response => {
+                            if (response.ok) {
+                                alert('Employee Deleted Successfully!');
+                                loadEmployeeData();
+                            } else {
+                                alert('Failed to Delete Employee');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+                }
+            }
+            
+            // Initial Load
+            loadEmployeeData();
             </script>
+            
         </div>
         </div>
     </section>

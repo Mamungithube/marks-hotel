@@ -57,12 +57,14 @@
                     <table class="table table-bordered table-striped">
                         <thead class="table-dark">
                             <tr>
-                                <th>ID</th>
+                                <th>No</th>
+                                <th>Customer User name</th>
                                 <th>Room Number</th>
+                                <th>Adult Person/children</th>
                                 <th>Check-in Date</th>
                                 <th>Check-out Date</th>
+                                <th>Time</th>
                                 <th>Status</th>
-                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody id="bookings-table-body">
@@ -116,13 +118,13 @@
                         data.forEach(booking => {
                             const row = `<tr>
                     <td>${booking.id}</td>
-                    <td>${booking.room_details ? booking.room_details.room_number : "N/A"}</td>
+                    <td>${booking.user} (${booking.user_details.email})</td>
+                    <td>${booking.room_details ? booking.room_details.room_number : "N/A"}(${booking.room_details ? booking.room_details.room_type : "N/A"})</td>
+                    <td>Ad: ${booking.adults} , Ch: ${booking.children}</td>
                     <td>${booking.check_in_date}</td>
                     <td>${booking.check_out_date}</td>
+                    <td>${booking.booking_date}</td>
                     <td>${booking.status}</td>
-                    <td>
-                        ${booking.status === "pending" ? `<button class="btn btn-danger" onclick="cancelBooking(${booking.id})">Cancel</button>` : ""}
-                    </td>
                 </tr>`;
                             tableBody.innerHTML += row;
                         });
