@@ -103,7 +103,7 @@ fetch("main navber.html")
                     <a class="nav-link" href="#room">Rooms</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#about">About Us</a>
+                    <a class="nav-link" href="about.html">About Us</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#survice">Survice</a>
