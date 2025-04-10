@@ -41,6 +41,7 @@
             fetch("http://127.0.0.1:8000/gust/contect/")
                 .then(response => response.json())
                 .then(data => {
+                    console.log(data);
                     const tableBody = document.getElementById("messagesBody");
                     const table = document.getElementById("messagesTable");
                     const loading = document.getElementById("loading");
@@ -56,7 +57,7 @@
                     data.forEach((message, index) => {
                         const row = `<tr>
                             <td>${index + 1}</td>
-                            <td>${message.name}</td>
+                            <td>${message.name} (${message.id})</td>
                             <td>${message.email}</td>
                             <td>${message.problem}</td>
                         </tr>`;
