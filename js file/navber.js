@@ -5,18 +5,18 @@ fetch("navber.html")
 
     const navElement = document.getElementById("auth");
     const token = localStorage.getItem("authToken");
-
+    console.log("Token from localStorage:", token);
     if (token) {
       fetch("http://127.0.0.1:8000/authontication/admins/", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `token ${token}`,
+          Authorization: `Token ${token}`,
         },
       })
         .then((response) => response.json())
         .then((Data) => {
-          console.log(Data);
+          console.log("API Response:", Data);
           if (Data.is_admin) {
             navElement.innerHTML += `
                     <a href="booking.html" class="booking-btn">Booking Now</a>
@@ -51,11 +51,11 @@ fetch("navber.html")
             `;
           }
         });
-    } else {
-      navElement.innerHTML += `
-      <a href="./loginpage.html" class="booking-btn">Sign-in</a>
-      `;
-    }
+      } else {
+        navElement.innerHTML += `
+        <a href="./loginpage.html" class="booking-btn">Sign-in</a>
+        `;
+      }
   });
 
 // main nevber
@@ -72,7 +72,7 @@ fetch("main navber.html")
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `token ${token}`,
+          Authorization: `Token ${token}`,
         },
       })
         .then((response) => response.json())
@@ -96,13 +96,7 @@ fetch("main navber.html")
                     <a class="nav-link active" href="./index.html">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#room">Rooms</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="about.html">About Us</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#survice">Survice</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="./show reviews.html">Reviews</a>

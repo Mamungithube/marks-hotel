@@ -39,11 +39,6 @@
             </div>
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">
-                        <i class="fa-solid fa-list me-2"></i> Amenities
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link active" href="./amenities.html">
                         <i class="bi bi-speedometer2 me-2"></i> Room Amenities
                     </a>
@@ -125,72 +120,7 @@
             </form>
 
             
-            <!-- JS Code
-            <script>
-            // Fetch Employee Data and Show in Table
-            function loadEmployeeData() {
-                fetch('http://127.0.0.1:8000/employees_api/employees_data/')
-                    .then(response => response.json())
-                    .then(data => {
-                        const tableBody = document.getElementById('employee-data');
-                        tableBody.innerHTML = "";  // Clear Previous Data
-                        data.forEach(employee => {
-                            console.log(employee);
-                            const row = `
-                                <tr>
-                                    <td>${employee.id}</td>
-                                    <td>${employee.name}</td>
-                                    <td>${employee.education}</td>
-                                    <td>${employee.address}</td>
-                                    <td>${employee.phone_no}</td>
-                                    <td>${employee.employee_id}</td>
-                                    <td>${employee.Salary}</td>
-                                </tr>
-                            `;
-                            tableBody.innerHTML += row;
-                        });
-                    })
-                    .catch(error => {
-                        console.error('Error fetching data:', error);
-                    });
-            }
-            
-            // Add Employee Data to API
-            document.getElementById('employee-form').addEventListener('submit', function (e) {
-                e.preventDefault();
-            
-                const employeeData = {
-                    name: document.getElementById('name').value,
-                    education: document.getElementById('education').value,
-                    address: document.getElementById('address').value,
-                    phone_no: document.getElementById('phone_no').value,
-                    Salary: document.getElementById('Salary').value,
-                };
-            
-                fetch('http://127.0.0.1:8000/employees_api/employees_data/', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(employeeData)
-                })
-                    .then(response => {
-                        if (response.ok) {
-                            alert('Employee Added Successfully!');
-                            document.getElementById('employee-form').reset();
-                            loadEmployeeData(); // Reload Data
-                        } else {
-                            alert('Failed to Add Employee');
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                    });
-            });
-            
-            // Initial Data Load
-            loadEmployeeData();
-            </script> -->
+
 
             <script>
             // Load Employee Data

@@ -1,66 +1,12 @@
-// async function changePassword(event) {
-//     event.preventDefault();
-
-//     let oldPassword = document.getElementById("oldPassword").value;
-//     let newPassword = document.getElementById("newPassword").value;
-//     let confirm_password = document.getElementById("confirmPassword").value;
-//     let passwordError = document.getElementById("passwordError");
-//     let changePassBtn = document.getElementById("changePassBtn");
-
-//     if (newPassword !== confirm_password) {
-//         passwordError.style.display = "block";
-//         return;
-//     } else {
-//         passwordError.style.display = "none";
-//     }
-
-//     let token = localStorage.getItem("authToken");
-//     console.log(token);
-//     if (!token) {
-//         alert("You must be logged in to change your password.");
-//         return;
-//     }
-
-//     let requestData = {
-//         old_password: oldPassword,
-//         new_password: newPassword,
-//         confirm_password: confirm_password
-//     };
-
-//     changePassBtn.innerText = "Changing...";
-//     changePassBtn.disabled = true;
-
-//     try {
-//         let response = await fetch("http://127.0.0.1:8000/authontication/change_pass/", {
-//             method: "POST",
-//             headers: {
-//                 "Content-Type": "application/json",
-//                 "Authorization": `Token ${token}`
-//             },
-//             body: JSON.stringify(requestData)
-//         });
-
-//         if (response.status === 204) {
-//             alert("Password changed successfully!");
-//             document.getElementById("changePasswordForm").reset();
-//         } else {
-//             let data = await response.json();
-//             if (response.status === 400) {
-//                 // ভ্যালিডেশন এরর হ্যান্ডলিং
-//                 let errorMessage = Object.values(data).join("\n");
-//                 alert("Error: " + errorMessage);
-//             } else {
-//                 alert("Error: " + JSON.stringify(data));
-//             }
-//         }
-//     } catch (error) {
-//         console.error("Error:", error);
-//         alert("Something went wrong! Please try again.");
-//     } finally {
-//         changePassBtn.innerText = "Change Password";
-//         changePassBtn.disabled = false;
-//     }
-// }
+fetch('http://127.0.0.1:8000/authontication/api/profile/', {
+  headers: {
+    'Authorization': `Token ${localStorage.getItem('authToken')}`
+  }
+})
+.then(res => res.json())
+.then(data => {
+  document.getElementById('userName').innerText = `User Name : ${data.username}`;
+});
 
 // right code 
 async function changePassword(event) {
@@ -138,3 +84,57 @@ async function changePassword(event) {
 }
 
 // Add this helper function if you need CSRF token
+const token = localStorage.getItem("authToken"); // or you can directly set token value here
+
+// API GET: Fetch profile info
+fetch("http://127.0.0.1:8000/authontication/api/profile/", {
+  headers: {
+    "Authorization": `Token ${token}`
+  }
+})
+  .then(res => res.json())
+  .then(data => {
+    console.log(data);
+    // Pre-fill form with data
+    document.getElementById("id").value = data.id || '';
+    document.getElementById("firstName").value = data.first_name || '';
+    document.getElementById("lastName").value = data.last_name || '';
+    document.getElementById("email").value = data.email || '';
+    document.getElementById("username").value = data.username || '';
+  })
+  .catch(err => {
+    console.error("Profile load error:", err);
+  });
+
+// API PUT: Update profile on submit
+document.getElementById("profileForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const updatedData = {
+    id: document.getElementById("id").value,
+    first_name: document.getElementById("firstName").value,
+    last_name: document.getElementById("lastName").value,
+    email: document.getElementById("email").value,
+  };
+
+  fetch("http://127.0.0.1:8000/authontication/api/profile/", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Token ${token}`
+    },
+    body: JSON.stringify(updatedData)
+  })
+    .then(res => {
+      if (res.ok) {
+        document.getElementById("successMsg").style.display = "block";
+      } else {
+        return res.json().then(data => {
+          alert("Error: " + JSON.stringify(data));
+        });
+      }
+    })
+    .catch(err => {
+      console.error("Profile update error:", err);
+    });
+});

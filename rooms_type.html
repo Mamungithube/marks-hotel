@@ -2,58 +2,122 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Room Type List</title>
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Room Type List | MASKS Luxury Hotel</title>
 
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+<link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background-color: #f1f4f7;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .page-header {
+      background: linear-gradient(to right, #c89666, #c89666);
+      padding: 2rem;
+      border-radius: 10px;
+      text-align: center;
+      margin-bottom: 2rem;
+      color: white;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .room-card {
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .room-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .room-card h5 {
+      font-weight: 600;
+    }
+
+    .price-tag {
+      color: #c89666;
+      font-weight: 600;
+    }
+
+    .icon-title {
+      font-size: 1.5rem;
+      margin-right: 0.5rem;
+      vertical-align: middle;
+    }
+  </style>
 </head>
 
-<body class="bg-light">
+<body>
 
-    <!-- Navbar -->
-    <div id="main_navbar"></div>
-    <script src="./js file/navber.js"></script>
+  <!-- Navbar -->
+  <div id="main_navbar"></div>
+  <script src="./js file/navber.js"></script>
 
-    <div class="container py-4">
-        <h2 class="text-center mb-4">Room Type List</h2>
-
-        <div class="row" id="roomTypeList">
-            <!-- Room Type Card Load here -->
-        </div>
+  <div class="container">
+    <div class="page-header">
+      <h2><i class="bi bi-door-open-fill icon-title"></i> Room Type List</h2>
+      <p class="lead">Choose from a variety of luxurious room types available at MASKS Hotel</p>
     </div>
 
-    <div id="footer"></div>
-    <script src="./js file/footer.js"></script>
+    <div class="row" id="roomTypeList">
+      <!-- Room Type Cards load here -->
+    </div>
+  </div>
 
-    <script>
-        fetch('http://127.0.0.1:8000/api/room-types/')
-            .then(response => response.json())
-            .then(data => {
-                let html = '';
-                data.forEach(roomType => {
-                    html += `
-                        <div class="col-md-4 mb-4">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5>${roomType.name}</h5>
-                                    <p>${roomType.description}</p>
-                                    <h6>Price: ৳${roomType.price_per_night}</h6>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                });
-                document.getElementById('roomTypeList').innerHTML = html;
-            });
-    </script>
+  <!-- Footer -->
+  <div id="footer" class="mt-5"></div>
+  <script src="./js file/footer.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
+  <!-- Fetch Room Types -->
+  <script>
+    fetch('http://127.0.0.1:8000/api/room-types/')
+      .then(response => response.json())
+      .then(data => {
+        const container = document.getElementById('roomTypeList');
+        container.innerHTML = '';
+
+        if (data.length === 0) {
+          container.innerHTML = `<div class="col-12"><div class="alert alert-warning">No room types found.</div></div>`;
+          return;
+        }
+
+        data.forEach(roomType => {
+          const col = document.createElement('div');
+          col.className = 'col-md-4 mb-4';
+
+          col.innerHTML = `
+            <div class="card room-card p-3 h-100">
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title"><i class="bi bi-bed me-2"></i>${roomType.name}</h5>
+                <p class="card-text text-muted">${roomType.description}</p>
+                <div class="mt-auto">
+                  <h6 class="price-tag">৳${roomType.price_per_night} / night</h6>
+                </div>
+              </div>
+            </div>
+          `;
+          container.appendChild(col);
+        });
+      })
+      .catch(error => {
+        console.error('Error fetching room types:', error);
+        document.getElementById('roomTypeList').innerHTML = `
+          <div class="col-12">
+            <div class="alert alert-danger">Failed to load room types. Please try again later.</div>
+          </div>`;
+      });
+  </script>
 </body>
 
 </html>

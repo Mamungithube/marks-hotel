@@ -94,6 +94,19 @@
             reviews.forEach(review => {
                 const reviewItem = document.createElement('div');
                 reviewItem.className = 'list-group-item';
+
+                const authUserId = localStorage.getItem("user_id"); // লগইন করা ইউজারের আইডি
+
+                let actionButtons = '';
+                if (review.reviewer === parseInt(authUserId)) {
+                    actionButtons = `
+            <div class="mt-2">
+                <button class="btn btn-warning btn-sm" onclick="editReview(${review.id}, '${review.body}', '${review.rating}')">Edit</button>
+                <button class="btn btn-danger btn-sm" onclick="deleteReview(${review.id})">Delete</button>
+            </div>
+        `;
+                }
+
                 reviewItem.innerHTML = `
                     <div class="d-flex justify-content-between align-items-center">
                         <h5>Guest: ${review.reviewer_name}</h5>
@@ -101,11 +114,12 @@
                     </div>
                     <p>${review.body}</p>
                     <small>Rating: ${review.rating}</small>
-                    
-                `;
+                    ${actionButtons}
+        `;
                 reviewList.appendChild(reviewItem);
-            });
-        }
+                });
+
+                }
 
         // 105 no line e Chilo 
         // <div class="mt-2">
@@ -126,11 +140,11 @@
                     "Authorization": `Token ${authToken}`
                 },
                 body: JSON.stringify({
-                    body:body,
-                    rating:rating
+                    body: body,
+                    rating: rating
                 })
             })
-            
+
                 .then(response => {
                     if (response.ok) {
                         alert("Review Submitted Successfully");
@@ -142,59 +156,59 @@
         }
 
 
-        // // ✅ রিভিউ সম্পাদনা করা
-        // function editReview(id, currentBody, currentRating) {
-        //     const newBody = prompt("Edit your review:", currentBody);
-        //     if (newBody === null) return;
+        // ✅ রিভিউ সম্পাদনা করা
+        function editReview(id, currentBody, currentRating) {
+            const newBody = prompt("Edit your review:", currentBody);
+            if (newBody === null) return;
 
-        //     const newRating = prompt("Edit your rating (⭐ - ⭐⭐⭐⭐⭐):", currentRating);
-        //     if (newRating === null) return;
+            const newRating = prompt("Edit your rating (⭐ - ⭐⭐⭐⭐⭐):", currentRating);
+            if (newRating === null) return;
 
-        //     updateReview(id, newBody, newRating);
-        // }
+            updateReview(id, newBody, newRating);
+        }
 
-        // async function updateReview(id, body, rating) {
-        //     const authToken = localStorage.getItem("authToken");
-        //     const userId = localStorage.getItem("user_id");  // Ensure user_id is stored when login
+        async function updateReview(id, body, rating) {
+            const authToken = localStorage.getItem("authToken");
+            const userId = localStorage.getItem("user_id");  // Ensure user_id is stored when login
 
-        //     const response = await fetch(`${API_URL}${id}/`, {
-        //         method: "PUT",
-        //         headers: {
-        //             "Content-Type": "application/json",
-        //             "Authorization": `Token ${authToken}`
-        //         },
-        //         body: JSON.stringify({ body, rating, reviewer: userId })  // Include reviewer
-        //     });
+            const response = await fetch(`${API_URL}${id}/`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Token ${authToken}`
+                },
+                body: JSON.stringify({ body, rating, reviewer: userId })  // Include reviewer
+            });
 
-        //     if (response.ok) {
-        //         alert("Review updated successfully!");
-        //         fetchReviews();
-        //     } else {
-        //         alert("Failed to update review.");
-        //     }
-        // }
+            if (response.ok) {
+                alert("Review updated successfully!");
+                fetchReviews();
+            } else {
+                alert("Failed to update review.");
+            }
+        }
 
 
         // ✅ রিভিউ মুছে ফেলা
-        // async function deleteReview(id) {
-        //     const authToken = localStorage.getItem("authToken");
+        async function deleteReview(id) {
+            const authToken = localStorage.getItem("authToken");
 
-        //     if (!confirm("Are you sure you want to delete this review?")) return;
+            if (!confirm("Are you sure you want to delete this review?")) return;
 
-        //     const response = await fetch(`${API_URL}${id}/`, {
-        //         method: "DELETE",
-        //         headers: {
-        //             "Authorization": `Token ${authToken}`
-        //         }
-        //     });
+            const response = await fetch(`${API_URL}${id}/`, {
+                method: "DELETE",
+                headers: {
+                    "Authorization": `Token ${authToken}`
+                }
+            });
 
-        //     if (response.ok) {
-        //         alert("Review deleted successfully!");
-        //         fetchReviews();
-        //     } else {
-        //         alert("Failed to delete review.");
-        //     }
-        // }
+            if (response.ok) {
+                alert("Review deleted successfully!");
+                fetchReviews();
+            } else {
+                alert("Failed to delete review.");
+            }
+        }
 
         document.addEventListener('DOMContentLoaded', fetchReviews);
     </script>
