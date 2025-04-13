@@ -30,7 +30,7 @@
     <!-- Navigation -->
     <div id="main_navbar"></div>
     <script src="./js file/navber.js"></script>
-
+    <h2 class="text-center">Total Registered Users: <span id="userCount">Loading...</span></h2><br>
     <!-- Sidebar -->
     <section style="display: flex;">
         <div class="sidebar ">
@@ -119,19 +119,19 @@
                 <button type="submit" class="btn btn-warning">Add Employee</button>
             </form>
 
-            
+
 
 
             <script>
-            // Load Employee Data
-            function loadEmployeeData() {
-                fetch('http://127.0.0.1:8000/employees_api/employees_data/')
-                    .then(response => response.json())
-                    .then(data => {
-                        const tableBody = document.getElementById('employee-data');
-                        tableBody.innerHTML = "";
-                        data.forEach(employee => {
-                            const row = `
+                // Load Employee Data
+                function loadEmployeeData() {
+                    fetch('http://127.0.0.1:8000/employees_api/employees_data/')
+                        .then(response => response.json())
+                        .then(data => {
+                            const tableBody = document.getElementById('employee-data');
+                            tableBody.innerHTML = "";
+                            data.forEach(employee => {
+                                const row = `
                                 <tr>
                                     <td>${employee.id}</td>
                                     <td>${employee.name}</td>
@@ -143,71 +143,89 @@
                                     <td><button class="btn btn-danger" onclick="deleteEmployee(${employee.id})">Delete</button></td>
                                 </tr>
                             `;
-                            tableBody.innerHTML += row;
+                                tableBody.innerHTML += row;
+                            });
+                        })
+                        .catch(error => {
+                            console.error('Error fetching data:', error);
                         });
-                    })
-                    .catch(error => {
-                        console.error('Error fetching data:', error);
-                    });
-            }
-            
-            // Add Employee Data
-            document.getElementById('employee-form').addEventListener('submit', function (e) {
-                e.preventDefault();
-            
-                const employeeData = {
-                    name: document.getElementById('name').value,
-                    education: document.getElementById('education').value,
-                    address: document.getElementById('address').value,
-                    phone_no: document.getElementById('phone_no').value,
-                    Salary: document.getElementById('Salary').value,
-                };
-            
-                fetch('http://127.0.0.1:8000/employees_api/employees_data/', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(employeeData)
-                })
-                    .then(response => {
-                        if (response.ok) {
-                            alert('Employee Added Successfully!');
-                            document.getElementById('employee-form').reset();
-                            loadEmployeeData();
-                        } else {
-                            alert('Failed to Add Employee');
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                    });
-            });
-            
-            // Delete Employee Data
-            function deleteEmployee(id) {
-                if (confirm('Are you sure you want to delete this employee?')) {
-                    fetch(`http://127.0.0.1:8000/employees_api/employees_data/${id}/`, {
-                        method: 'DELETE',
+                }
+
+                // Add Employee Data
+                document.getElementById('employee-form').addEventListener('submit', function (e) {
+                    e.preventDefault();
+
+                    const employeeData = {
+                        name: document.getElementById('name').value,
+                        education: document.getElementById('education').value,
+                        address: document.getElementById('address').value,
+                        phone_no: document.getElementById('phone_no').value,
+                        Salary: document.getElementById('Salary').value,
+                    };
+
+                    fetch('http://127.0.0.1:8000/employees_api/employees_data/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(employeeData)
                     })
                         .then(response => {
                             if (response.ok) {
-                                alert('Employee Deleted Successfully!');
+                                alert('Employee Added Successfully!');
+                                document.getElementById('employee-form').reset();
                                 loadEmployeeData();
                             } else {
-                                alert('Failed to Delete Employee');
+                                alert('Failed to Add Employee');
                             }
                         })
                         .catch(error => {
                             console.error('Error:', error);
                         });
+                });
+
+                // Delete Employee Data
+                function deleteEmployee(id) {
+                    if (confirm('Are you sure you want to delete this employee?')) {
+                        fetch(`http://127.0.0.1:8000/employees_api/employees_data/${id}/`, {
+                            method: 'DELETE',
+                        })
+                            .then(response => {
+                                if (response.ok) {
+                                    alert('Employee Deleted Successfully!');
+                                    loadEmployeeData();
+                                } else {
+                                    alert('Failed to Delete Employee');
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                            });
+                    }
                 }
-            }
-            
-            // Initial Load
-            loadEmployeeData();
+
+                // Initial Load
+                loadEmployeeData();
+
+                // count data register
+
+                fetch("http://127.0.0.1:8000/authontication/registered-users-count/")
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error("Network response was not ok");
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        document.getElementById("userCount").innerText = data.registered_users;
+                    })
+                    .catch(error => {
+                        console.error("Error fetching user count:", error);
+                        document.getElementById("userCount").innerText = "Error";
+                    });
+
             </script>
-            
+
         </div>
         </div>
     </section>
