@@ -10,6 +10,7 @@ body {
     color: var(--text-color);
 }
 
+
 /* Top Bar */
 .top-bar {
     padding: 10px 0;
@@ -69,7 +70,7 @@ body {
 .navbar-brand {
     height: 80px;
     width: 130px;
-    font-size: 2rem;
+    font-size: 20px;
     font-family: serif;
 }
 
