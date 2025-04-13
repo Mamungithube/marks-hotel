@@ -99,6 +99,9 @@ fetch("main navber.html")
                     <a class="nav-link active" href="./index.html">Home</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link active" href="./Show_booking.html">My Room Booking</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="about.html">About our team</a>
                 </li>
                 <li class="nav-item">

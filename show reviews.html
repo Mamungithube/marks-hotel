@@ -64,11 +64,11 @@
                     reviewItem.className = 'list-group-item';
                     reviewItem.innerHTML = `
                 <div class="d-flex justify-content-between align-items-center">
-                    <h5>My Review</h5>
-                    <small>Posted: ${review.created}</small>
+                    <h4>My Review</h4>
+                    <small>Posted Time: ${review.created}</small>
                 </div>
-                <p>${review.body}</p>
-                <small>Rating: ${review.rating}</small>
+                <h5>My Comment : ${review.body}</h5>
+                <h5>Our Rating : ${review.rating}</h5>
                 <div class="mt-2">
                     <button class="btn btn-warning btn-sm" onclick="editReview(${review.id}, '${review.body}', '${review.rating}')">Edit</button>
                     <button class="btn btn-danger btn-sm" onclick="deleteReview(${review.id})">Delete</button>
@@ -109,12 +109,12 @@
 
                 reviewItem.innerHTML = `
                     <div class="d-flex justify-content-between align-items-center">
-                        <h5>Guest: ${review.reviewer_name}</h5>
-                        <small>Posted: ${review.created}</small>
-                    </div>
-                    <p>${review.body}</p>
-                    <small>Rating: ${review.rating}</small>
-                    ${actionButtons}
+                        <h4>My Name: ${review.reviewer_name}</h4>
+                        <small>Posted Time : ${review.created}</small>
+                    </div><br>
+                    <h5>My Comment : ${review.body}</h5><br>
+                    <h5>My Rating: ${review.rating}</h5>
+                    ${actionButtons}<br>
         `;
                 reviewList.appendChild(reviewItem);
                 });
