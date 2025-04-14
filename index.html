@@ -13,7 +13,8 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 
 </head>
@@ -29,7 +30,8 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1 class="hero-text text-center">WELCOME TO </h1><hr>
+            <h1 class="hero-text text-center">WELCOME TO </h1>
+            <hr>
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <div class="hero-text">
@@ -71,6 +73,36 @@
                             <button type="submit" class="btn btn-primary w-100">CHECK AVAILABILITY</button>
                         </form>
                     </div> -->
+                    <!-- Map Section -->
+                    <style>
+                        .mapouter {
+                            position: relative;
+                            text-align: right;
+                            width: 400px;
+                            height: 382px;
+                        }
+
+                        .gmap_canvas {
+                            overflow: hidden;
+                            background: none !important;
+                            width: 400px;
+                            height: 382px;
+                        }
+
+                        .gmap_iframe {
+                            width: 400px !important;
+                            height: 382px !important;
+                        }
+                    </style>
+                    <div class="mapouter">
+                        <h3 class="pe-5 text-light">Our Locetion</h3>
+                        <hr>
+                        <div class="gmap_canvas"><iframe class="gmap_iframe" frameborder="0" scrolling="no"
+                                marginheight="0" marginwidth="0"
+                                src="https://maps.google.com/maps?width=1250&amp;height=382&amp;hl=en&amp;q=comilla kandirpar hotel victory abashik&amp;t=k&amp;z=20&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -92,7 +124,8 @@
                             languages.</p>
                         <p class="s-para">So when it comes to booking the perfect hotel, vacation rental, resort,
                             apartment, guest house, or tree house, we've got you covered.</p>
-                        <a href="./about.html" class="primary-btn about-btn" style="text-decoration: none;">Read More</a>
+                        <a href="./about.html" class="primary-btn about-btn" style="text-decoration: none;">Read
+                            More</a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -129,24 +162,23 @@
                             <div class="hr-text">
                                 <h3>Normal Room</h3>
                                 <h2><del>2000.00 ৳</del> 1500.00 ৳<span>/Per night</span></h2>
-                                <table
-                                    <tbody>
-                                        <tr>
-                                            <td class="r-o">Size:</td>
-                                            <td>30 ft</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="r-o">Capacity:</td>
-                                            <td>Max person 3</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="r-o">Bed:</td>
-                                            <td>A King Beds</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="r-o">Services:</td>
-                                            <td>Wifi, Television, Bathroom, 24/7 Concierge...</td>
-                                        </tr>
+                                <table <tbody>
+                                    <tr>
+                                        <td class="r-o">Size:</td>
+                                        <td>30 ft</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Capacity:</td>
+                                        <td>Max person 3</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Bed:</td>
+                                        <td>A King Beds</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Services:</td>
+                                        <td>Wifi, Television, Bathroom, 24/7 Concierge...</td>
+                                    </tr>
                                     </tbody>
                                 </table>
                                 <a href="rooms_type.html" class="btn btn-primary">More Details</a>
@@ -218,6 +250,8 @@
         </div>
     </section>
 
+
+
     <!-- What We Do Section -->
     <section class="what-we-do py-5" id="survice">
         <div class="container">
@@ -273,13 +307,85 @@
             </div>
         </div>
     </section>
-    
+    <!-- FAQ Section for Marks Management Hotel -->
+    <div id="faq" class="faq container my-5">
+        <h1 class="custom-title text-center">Frequently Asked Questions</h1>
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        # How can I book a room at Marks Management Hotel?
+                    </button>
+                </h2>
+                <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        To book a room, visit our website and browse available room types. Select your preferred room,
+                        check availability for your desired dates, and click "Book Now". You can also call our front
+                        desk for assistance.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                        # What facilities are included with each room?
+                    </button>
+                </h2>
+                <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        Each room includes free high-speed Wi-Fi, flat-screen television, en-suite bathroom,
+                        complimentary toiletries, and 24/7 concierge support. Some premium rooms offer balconies, spa
+                        access, and fine dining services.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                        # Can I cancel my booking and get a refund?
+                    </button>
+                </h2>
+                <div id="flush-collapseThree" class="accordion-collapse collapse"
+                    data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        Yes, you can cancel your booking. Our refund policy allows free cancellation up to 48 hours
+                        before your check-in time. For last-minute cancellations, partial charges may apply.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                        # How do I contact the hotel for support or special requests?
+                    </button>
+                </h2>
+                <div id="flush-collapseFour" class="accordion-collapse collapse"
+                    data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        You can contact our support team 24/7 via phone, email, or live chat. For special requests (like
+                        early check-in, late checkout, or room decoration), please mention them while booking or call
+                        our concierge desk directly.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
     <!-- Footer Section -->
     <div id="footer"></div>
     <script src="./js file/footer.js"></script>
     <!-- Bootstrap 5 JS and Popper.js -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
     <!-- Custom JS -->
     <script src="./js file/script.js"></script>
