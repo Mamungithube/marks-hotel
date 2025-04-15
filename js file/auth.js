@@ -14,7 +14,7 @@ const handleRegister = (event) => {
   
     console.log("Registration data", registerData);
   
-    fetch("http://127.0.0.1:8000/authontication/register/", {
+    fetch("https://marks-hotel.vercel.app/authontication/register/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -25,7 +25,7 @@ const handleRegister = (event) => {
         alert(
           "Registration Successful. Please check your email for a confirmation."
         );
-        // window.location.href = "./loginpage.html";
+        window.location.href = "https://mark-s.netlify.app/loginpage.html";
       })
       .catch((error) => console.log("Registration Error", error));
   };
@@ -43,7 +43,7 @@ const handleRegister = (event) => {
       username: formData.get("username"),
       password: formData.get("password"),
     };
-    fetch("http://127.0.0.1:8000/authontication/login/", {
+    fetch("https://marks-hotel.vercel.app/authontication/login/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -87,7 +87,7 @@ function handleLogout(event) {
         return;
     }
 
-    fetch("http://127.0.0.1:8000/authontication/logout/", {
+    fetch("https://marks-hotel.vercel.app/authontication/logout/", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

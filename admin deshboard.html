@@ -125,7 +125,7 @@
             <script>
                 // Load Employee Data
                 function loadEmployeeData() {
-                    fetch('http://127.0.0.1:8000/employees_api/employees_data/')
+                    fetch('https://marks-hotel.vercel.app/employees_api/employees_data/')
                         .then(response => response.json())
                         .then(data => {
                             const tableBody = document.getElementById('employee-data');
@@ -163,7 +163,7 @@
                         Salary: document.getElementById('Salary').value,
                     };
 
-                    fetch('http://127.0.0.1:8000/employees_api/employees_data/', {
+                    fetch('https://marks-hotel.vercel.app/employees_api/employees_data/', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -187,7 +187,7 @@
                 // Delete Employee Data
                 function deleteEmployee(id) {
                     if (confirm('Are you sure you want to delete this employee?')) {
-                        fetch(`http://127.0.0.1:8000/employees_api/employees_data/${id}/`, {
+                        fetch(`https://marks-hotel.vercel.app/employees_api/employees_data/${id}/`, {
                             method: 'DELETE',
                         })
                             .then(response => {
@@ -209,7 +209,7 @@
 
                 // count data register
 
-                fetch("http://127.0.0.1:8000/authontication/registered-users-count/")
+                fetch("https://marks-hotel.vercel.app/authontication/registered-users-count/")
                     .then(response => {
                         if (!response.ok) {
                             throw new Error("Network response was not ok");

@@ -7,7 +7,7 @@ fetch("navber.html")
     const token = localStorage.getItem("authToken");
     console.log("Token from localStorage:", token);
     if (token) {
-      fetch("http://127.0.0.1:8000/authontication/admins/", {
+      fetch("https://marks-hotel.vercel.app/authontication/admins/", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -68,7 +68,7 @@ fetch("main navber.html")
     const token = localStorage.getItem("authToken");
 
     if (token) {
-      fetch("http://127.0.0.1:8000/authontication/admins/", {
+      fetch("https://marks-hotel.vercel.app/authontication/admins/", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

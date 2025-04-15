@@ -18,7 +18,7 @@ function addContact(event) {
         problem: message
     };
 
-    fetch('http://127.0.0.1:8000/gust/contect/', {
+    fetch('https://marks-hotel.vercel.app/gust/contect/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

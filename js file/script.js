@@ -1,5 +1,5 @@
 
-fetch("http://127.0.0.1:8000/api/bookings/")
+fetch("https://marks-hotel.vercel.app/api/bookings/")
 .then(response => response.json())
 .then(data => {
     data.forEach(item => {
