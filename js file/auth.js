@@ -25,7 +25,7 @@ const handleRegister = (event) => {
         alert(
           "Registration Successful. Please check your email for a confirmation."
         );
-        window.location.href = "https://mark-s.netlify.app/loginpage.html";
+        window.location.href = "https://mark-s.netlify.app/chack_mail.html";
       })
       .catch((error) => console.log("Registration Error", error));
   };
