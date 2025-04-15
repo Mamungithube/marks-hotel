@@ -717,7 +717,7 @@ body {
 
   /* booking now button style  */
 
-  .booking-btn {
+  .booking-btn-jump {
     position: fixed;
     bottom: 30px;
     right: 30px;
@@ -734,7 +734,7 @@ body {
     transition: background-color 0.3s;
   }
 
-  .booking-btn:hover {
+  .booking-btn-jump:hover {
     background-color: #d3955a;
   }
 
