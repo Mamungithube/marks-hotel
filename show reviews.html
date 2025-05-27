@@ -68,8 +68,8 @@
                     <small>Posted Time: ${review.created}</small>
                 </div>
                 <h5>My Comment : ${review.body}</h5>
-                <h5>Our Rating : ${review.rating}</h5>
-                <div class="mt-2">
+                <h4>Our Rating : ${review.rating}</h4>
+                <div class="mt-5">
                     <button class="btn btn-warning btn-sm" onclick="editReview(${review.id}, '${review.body}', '${review.rating}')">Edit</button>
                     <button class="btn btn-danger btn-sm" onclick="deleteReview(${review.id})">Delete</button>
                 </div>

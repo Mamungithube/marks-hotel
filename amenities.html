@@ -23,8 +23,10 @@
     <script src="./js file/navber.js"></script>
 
     <div class="container py-4">
-        <h2 class="text-center">Amenities List</h2><hr><br><br><br>
-
+        <div class="container py-5">
+            <h2 class="text-center mb-4">🏨 Our Hotel Amenities</h2>
+            <p class="text-center text-muted mb-5">Discover the comfort and convenience provided by our world-class amenities.</p>
+        
         <div class="row mb-4" id="amenitiesList">
             <!-- Amenities Card Load here -->
         </div>
@@ -41,7 +43,7 @@
                     <div class="col-md-3 mb-4">
                         <div class="card text-center">
                             <div class="card-body">
-                                <h5 class="mt-2"><mark>Amenity</mark> : ${amenity.name}</h5><br>
+                                <h5 class="mt-2">Amenity : ${amenity.name}</h5><br>
                                 <p><mark>Amenity Description : </mark><hr> ${amenity.description}</p>
                             </div>
                         </div>

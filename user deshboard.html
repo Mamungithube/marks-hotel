@@ -25,7 +25,7 @@
 
     .welcome-icon {
         font-size: 60px;
-        color: #ff4081;
+        color: red;
         animation: bounce 1.5s infinite;
     }
 
@@ -37,7 +37,7 @@
 
     .sub-message {
         font-size: 18px;
-        color: #666;
+        color: green;
     }
 
     @keyframes bounce {
@@ -77,7 +77,7 @@
         <!-- Sidebar -->
         <div class="sidebar">
             <div class="p-3">
-                <h4 class="text-center">Hotel Guest</h4>
+                <h2 style="color: #f37601;">Hotel Guest</h2>
             </div>
             <ul class="nav flex-column">
                 <li class="nav-item">
@@ -123,11 +123,13 @@
                     </button>
                     <h4 class="ms-3">Welcome, Guest!</h4>
                 </div>
-            </nav>
+            </nav><br>
+            <p class="ms-3">Have A Nice Day</p>
+            <h5 class="" id="userName"></h5>
 
             <!-- Welcome massage -->
             <div class="welcome-card">
-                <div class="welcome-icon">🌸</div>
+                
                 <div class="welcome-message">স্বাগতম আমাদের হোটেলে!</div>
                 <p class="sub-message">আপনার আগমন আমাদের জন্য আনন্দের! আপনার থাকার সময়টুকু হোক স্বাচ্ছন্দ্যময় ও সুখকর।</p>
                 
@@ -165,6 +167,7 @@
         });
     </script>
     <script src="./js file/auth.js"></script>
+    <script src="./js file/edit_profile.js"></script>
 </body>
 
 </html>

@@ -86,6 +86,9 @@ fetch("main navber.html")
               <li class="nav-item">
                     <a class="nav-link" href="./show reviews.html">Customer Reviews</a>
                 </li>
+              <li class="nav-item">
+                    <a class="nav-link" href="./show_booking.html">Customer Booking</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="./admin deshboard.html">Admin Deshboard</a>
                 </li>

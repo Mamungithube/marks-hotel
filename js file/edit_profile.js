@@ -5,7 +5,7 @@ fetch('https://marks-hotel.vercel.app/authontication/api/profile/', {
 })
 .then(res => res.json())
 .then(data => {
-  document.getElementById('userName').innerText = `User Name : ${data.username}`;
+  document.getElementById('userName').innerText = `Name : ${data.username}`;
 });
 
 // right code 
