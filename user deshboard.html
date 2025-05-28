@@ -15,13 +15,18 @@
 
 </head>
 <style>
+    .card-body {
+        gap: 20px; /* কার্ডগুলোর মধ্যে দূরত্ব */
+        padding: 15px;
+    }
     .welcome-card {
-        background: white;
+        background: linear-gradient(to right, #ffffff, #f1f1f1);
         border-radius: 20px;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-        padding: 40px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        padding: 50px;
         text-align: center;
-        animation: fadeIn 2s ease;
+        animation: fadeIn 1s ease;
+        margin-top: 30px;
     }
 
     .welcome-icon {
@@ -93,12 +98,12 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="./rooms.html">
-                        <i class="bi bi-calendar-check me-2"></i> Rooms 
+                        <i class="bi bi-calendar-check me-2"></i> Rooms
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="./rooms_type.html">
-                        <i class="bi bi-calendar-check me-2"></i> Rooms Type 
+                        <i class="bi bi-calendar-check me-2"></i> Rooms Type
                     </a>
                 </li>
                 <li class="nav-item">
@@ -127,13 +132,49 @@
             </nav><br>
             <p class="ms-3">Have A Nice Day</p>
             <h5 class="" id="userName"></h5>
-
             <!-- Welcome massage -->
             <div class="welcome-card">
-                
+
                 <div class="welcome-message">স্বাগতম আমাদের হোটেলে!</div>
-                <p class="sub-message">আপনার আগমন আমাদের জন্য আনন্দের! আপনার থাকার সময়টুকু হোক স্বাচ্ছন্দ্যময় ও সুখকর।</p>
-                
+                <p class="sub-message">আপনার আগমন আমাদের জন্য আনন্দের! আপনার থাকার সময়টুকু হোক স্বাচ্ছন্দ্যময় ও সুখকর।
+                </p>
+                <!-- বুকিং লিস্ট (কার্ড স্টাইল) -->
+                <div class="container mt-4">
+                    <div class="card shadow-sm border-0">
+                        <div class="card-header bg-primary text-white py-3">
+                            <h5 class="mb-0"><i class="bi bi-calendar3 me-2"></i>আমার বুকিং সমূহ</h5>
+                        </div>
+
+                        <div class="card-body p-0">
+                            <!-- লোডিং স্পিনার -->
+                            <div id="loading-spinner" class="text-center py-5" style="display:none;">
+                                <div class="spinner-border text-primary" role="status"></div>
+                                <p class="mt-2 text-muted">বুকিং লোড হচ্ছে...</p>
+                            </div>
+
+                            <!-- বুকিং কার্ড লিস্ট -->
+                            <div id="bookings-container" class="d-flex justify-between gap-5git ">
+                                <!-- ডাটা এখানে ডাইনামিকভাবে আসবে -->
+                                <div class="col">
+                                    <div class="alert alert-info text-center py-4">
+                                        <i class="bi bi-info-circle fs-4"></i>
+                                        <p class="mb-0">কোন বুকিং পাওয়া যায়নি</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-footer bg-light py-2">
+                            <button id="fetch-bookings" class="btn btn-sm btn-success">
+                                <i class="bi bi-arrow-repeat me-1"></i>রিফ্রেশ করুন
+                            </button>
+                            <small class="text-muted float-end mt-1">
+                                সর্বশেষ আপডেট: <span id="last-updated">আজ</span>
+                            </small>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="service-list">
                     <h5 class="mt-4 text-primary">আমাদের সেবাসমূহ:</h5>
                     <ul>
@@ -148,10 +189,11 @@
                 </div>
 
                 <div id="more-info" class="mt-3" style="display:none;">
-                    <p>আমাদের অভিজ্ঞ টিম সদা প্রস্তুত আপনাকে সেরা অভিজ্ঞতা দিতে। যেকোনো প্রয়োজনে আমাদের হেল্প ডেস্ক ২৪ ঘণ্টা খোলা রয়েছে।</p>
+                    <p>আমাদের অভিজ্ঞ টিম সদা প্রস্তুত আপনাকে সেরা অভিজ্ঞতা দিতে। যেকোনো প্রয়োজনে আমাদের হেল্প ডেস্ক ২৪
+                        ঘণ্টা খোলা রয়েছে।</p>
                 </div>
             </div>
-        
+
         </div>
         </div>
     </section>
@@ -166,6 +208,105 @@
         document.getElementById('sidebarToggle').addEventListener('click', function () {
             document.querySelector('.sidebar').classList.toggle('active');
         });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("fetch-bookings").addEventListener("click", fetchBookings);
+
+            function fetchBookings() {
+                const token = localStorage.getItem("authToken");
+                const spinner = document.getElementById("loading-spinner");
+                const container = document.getElementById("bookings-container");
+
+                spinner.style.display = "block";
+                container.innerHTML = '<div class="col-12 text-center py-4"><div class="spinner-border text-primary"></div></div>';
+
+                if (!token) {
+                    container.innerHTML = `
+                <div class="col-12">
+                    <div class="alert alert-danger text-center">
+                        <i class="bi bi-exclamation-triangle"></i>
+                        <p class="mb-0">লগইন করা হয়নি</p>
+                    </div>
+                </div>
+            `;
+                    spinner.style.display = "none";
+                    return;
+                }
+
+                fetch("https://marks-hotel.vercel.app/api/bookings/", {
+                    headers: {
+                        "Authorization": `Token ${token}`
+                    }
+                })
+                    .then(response => {
+                        if (!response.ok) throw new Error("ডাটা লোড করতে ব্যর্থ");
+                        return response.json();
+                    })
+                    .then(data => {
+                        container.innerHTML = "";
+
+                        if (!data.length) {
+                            container.innerHTML = `
+                    <div class="col-12">
+                        <div class="alert alert-info text-center">
+                            <i class="bi bi-calendar-x"></i>
+                            <p class="mb-0">কোন বুকিং নেই</p>
+                        </div>
+                    </div>
+                `;
+                            return;
+                        }
+
+                        data.forEach(booking => {
+                            const bookingCard = `
+                <div class="col">
+                    <div class="card h-100 border-primary ">
+                        <div class="card-header bg-primary bg-opacity-10 py-2">
+                            <h6 class="mb-0 text-primary">
+                                <i class="bi bi-door-open me-1"></i>
+                                রুম: ${booking.room_details?.room_number || "N/A"}
+                            </h6>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-unstyled">
+                                <li><strong>টাইপ:</strong> ${booking.room_details?.room_type_name || "N/A"}</li>
+                                <li><strong>ব্যক্তি:</strong> বড় ${booking.adults}, শিশু ${booking.children}</li>
+                                <li><strong>চেক-ইন:</strong> ${new Date(booking.check_in_date).toLocaleDateString()}</li>
+                                <li><strong>চেক-আউট:</strong> ${new Date(booking.check_out_date).toLocaleDateString()}</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer bg-transparent">
+                            <span class="badge ${booking.status === 'confirmed' ? 'bg-success' : 'bg-warning'}">
+                                ${booking.status === 'confirmed' ? 'নিশ্চিত' : 'বিচারাধীন'}
+                            </span>
+                            <small class="text-muted float-end">
+                                ${new Date(booking.booking_date).toLocaleString()}
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                `;
+                            container.innerHTML += bookingCard;
+                        });
+
+                        document.getElementById("last-updated").textContent = new Date().toLocaleTimeString();
+                    })
+                    .catch(error => {
+                        container.innerHTML = `
+                <div class="col-12">
+                    <div class="alert alert-danger text-center">
+                        <i class="bi bi-exclamation-octagon"></i>
+                        <p class="mb-0">ত্রুটি: ${error.message}</p>
+                    </div>
+                </div>
+            `;
+                    })
+                    .finally(() => {
+                        spinner.style.display = "none";
+                    });
+            }
+        });
+
     </script>
     <script src="./js file/auth.js"></script>
     <script src="./js file/edit_profile.js"></script>

@@ -67,7 +67,12 @@
       <h2><i class="bi bi-door-open-fill icon-title"></i> Room Type List</h2>
       <p class="lead">Choose from a variety of luxurious room types available at MASKS Hotel</p>
     </div>
-
+    <!-- Loading Spinner -->
+    <div id="loading" class="text-center my-5">
+      <div class="spinner-border text-dark" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
     <div class="table-responsive">
       <table class="table table-bordered table-hover align-middle text-center">
         <thead class="table-dark">
@@ -98,6 +103,53 @@
 
   <!-- Fetch Room Types -->
   <script>
+    // লোডিং স্পিনার দেখাও
+    document.getElementById('loading').style.display = 'block';
+
+    fetch('https://marks-hotel.vercel.app/api/room-types/')
+      .then(response => response.json())
+      .then(data => {
+        // লোডিং স্পিনার হাইড করো
+        document.getElementById('loading').style.display = 'none';
+
+        const tableBody = document.getElementById('roomTypeTableBody');
+        tableBody.innerHTML = '';
+
+        if (data.length === 0) {
+          tableBody.innerHTML = `
+        <tr>
+          <td colspan="7" class="text-warning fw-bold">No room types found.</td>
+        </tr>`;
+          return;
+        }
+
+        data.forEach((roomType, index) => {
+          const amenitiesList = roomType.amenities.map(amenity => amenity.name).join(', ');
+          const room = roomType.available_rooms[0] || { floor: 'N/A', size: 'N/A' };
+
+          const row = `
+        <tr>
+          <td>${index + 1}</td>
+          <td><mark>${roomType.name}</mark></td>
+          <td>${roomType.description}</td>
+          <td>${room.floor} floor</td>
+          <td>${room.size} ft²</td>
+          <td>${amenitiesList}</td>
+          <td><span class="text-success fw-semibold">৳${roomType.price_per_night}</span></td>
+        </tr>
+      `;
+          tableBody.innerHTML += row;
+        });
+      })
+      .catch(error => {
+        console.error('Error fetching room types:', error);
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('roomTypeTableBody').innerHTML = `
+      <tr>
+        <td colspan="7" class="text-danger fw-bold">Failed to load room types. Please try again later.</td>
+      </tr>`;
+      });
+
     fetch('https://marks-hotel.vercel.app/api/room-types/')
       .then(response => response.json())
       .then(data => {

@@ -62,7 +62,15 @@ const handleRegister = (event) => {
         console.log("Auth token received:", data.token);
         localStorage.setItem("authToken", data.token);
         localStorage.setItem("user_id", data.user_id);
-        alert("Login Successful!");
+    
+        return Swal.fire({
+          icon: 'success',
+          title: 'Login!',
+          text: 'Login successfully!',
+          confirmButtonText: 'OK'
+        });
+      })
+      .then(() => {
         window.location.href = "./index.html";
       })
       .catch((err) => {
@@ -111,38 +119,3 @@ function handleLogout(event) {
     .catch((error) => console.error("Fetch Error:", error));
 }
 
-
-
-  
-
-
-  
-  
-  
-//   // this is data profile
-  
-//   const token = localStorage.getItem('authToken');
-//   if (!token) {
-//       console.log("not found token in local");
-//   } else {
-//       fetch('https://online-course-rose.vercel.app/Student/api/profile/', {
-//           method: 'GET',
-//           headers: {
-//               'Authorization': `Token ${token}`,
-//               'Content-Type': 'application/json',
-//           },
-//       })
-//       .then(response => {
-//           if (!response.ok) throw new Error('Failed to fetch profile data');
-//           return response.json();
-//       })
-//       .then(data => {
-//           document.getElementById('username').innerText = data.username;
-//           document.getElementById('email').innerText = data.email;
-//           document.getElementById('first_name').innerText = data.first_name;
-//           document.getElementById('last_name').innerText = data.last_name;
-//       })
-//       .catch(error => {
-//           console.error('Error fetching user profile:', error);
-//       });
-//   }

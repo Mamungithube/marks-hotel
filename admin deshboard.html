@@ -31,7 +31,13 @@
     <!-- Navigation -->
     <div id="main_navbar"></div>
     <script src="./js file/navber.js"></script>
-    <h2 class="text-center">Total Registered Users: <span id="userCount">Loading...</span></h2><br>
+    <h2 class="text-center">Total Registered Users: <span id="userCount">
+            <div class="text-center">
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        </span></h2><br>
     <!-- Sidebar -->
     <section style="display: flex;">
         <div class="sidebar ">
@@ -90,10 +96,10 @@
                 <h2 class="text-center mb-4">Employee List</h2>
                 <div class="m-4">
                     <a href="add_employee.html" class="btn rounded-pill shadow">
-                      ➕ Add Employee
+                        ➕ Add Employee
                     </a>
-                  </div>
-                  
+                </div>
+
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped">
                         <thead class="table-dark">
