@@ -105,7 +105,7 @@
     });
 
     function fetchUsers() {
-      fetch('https://marks-hotel.vercel.app/authontication/api/users/')
+      fetch('https://marks-hotel-backend.onrender.com//authontication/api/users/')
         .then(response => response.json())
         .then(data => {
           displayUsers(data);
@@ -148,7 +148,7 @@
 
     function searchUsers() {
       const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-      fetch('https://marks-hotel.vercel.app/authontication/api/users/')
+      fetch('https://marks-hotel-backend.onrender.com//authontication/api/users/')
         .then(response => response.json())
         .then(data => {
           if (searchTerm) {
@@ -172,7 +172,7 @@
 
     // cout data 
 
-    fetch("https://marks-hotel.vercel.app/authontication/registered-users-count/")
+    fetch("https://marks-hotel-backend.onrender.com//authontication/registered-users-count/")
       .then(response => {
         if (!response.ok) {
           throw new Error("Network response was not ok");

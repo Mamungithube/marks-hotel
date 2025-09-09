@@ -1,4 +1,4 @@
-const API_URL = "https://marks-hotel.vercel.app/gust/review/";
+const API_URL = "https://marks-hotel-backend.onrender.com//gust/review/";
 const authToken = localStorage.getItem("authToken");
 const userId = localStorage.getItem("user_id");
 

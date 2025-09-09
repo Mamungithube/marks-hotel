@@ -45,7 +45,7 @@
 
     <!-- Custom JS -->
     <script>
-        const API_URL = "https://marks-hotel.vercel.app/gust/review/";
+        const API_URL = "https://marks-hotel-backend.onrender.com//gust/review/";
         async function fetchMyReviews() {
             const authToken = localStorage.getItem("authToken");
 
@@ -134,7 +134,7 @@
             const rating = document.getElementById('review-rating').value;
             const authToken = localStorage.getItem("authToken");  // Token from login
 
-            fetch("https://marks-hotel.vercel.app/gust/review/", {
+            fetch("https://marks-hotel-backend.onrender.com//gust/review/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

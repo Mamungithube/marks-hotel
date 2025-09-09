@@ -1,4 +1,4 @@
-fetch('https://marks-hotel.vercel.app/authontication/api/profile/', {
+fetch('https://marks-hotel-backend.onrender.com//authontication/api/profile/', {
   headers: {
     'Authorization': `Token ${localStorage.getItem('authToken')}`
   }
@@ -54,7 +54,7 @@ async function changePassword(event) {
 
     try {
         console.log("Sending request to server..."); // Debug log
-        const response = await fetch("https://marks-hotel.vercel.app/authontication/change_pass/", {
+        const response = await fetch("https://marks-hotel-backend.onrender.com//authontication/change_pass/", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -87,7 +87,7 @@ async function changePassword(event) {
 const token = localStorage.getItem("authToken"); // or you can directly set token value here
 
 // API GET: Fetch profile info
-fetch("https://marks-hotel.vercel.app/authontication/api/profile/", {
+fetch("https://marks-hotel-backend.onrender.com//authontication/api/profile/", {
   headers: {
     "Authorization": `Token ${token}`
   }
@@ -117,7 +117,7 @@ document.getElementById("profileForm").addEventListener("submit", function (e) {
     email: document.getElementById("email").value,
   };
 
-  fetch("https://marks-hotel.vercel.app/authontication/api/profile/", {
+  fetch("https://marks-hotel-backend.onrender.com//authontication/api/profile/", {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

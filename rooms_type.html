@@ -106,7 +106,7 @@
     // লোডিং স্পিনার দেখাও
     document.getElementById('loading').style.display = 'block';
 
-    fetch('https://marks-hotel.vercel.app/api/room-types/')
+    fetch('https://marks-hotel-backend.onrender.com//api/room-types/')
       .then(response => response.json())
       .then(data => {
         // লোডিং স্পিনার হাইড করো
@@ -150,7 +150,7 @@
       </tr>`;
       });
 
-    fetch('https://marks-hotel.vercel.app/api/room-types/')
+    fetch('https://marks-hotel-backend.onrender.com//api/room-types/')
       .then(response => response.json())
       .then(data => {
         console.log(data);

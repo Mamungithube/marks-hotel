@@ -129,7 +129,7 @@
             <script>
                 // Load Employee Data
                 function loadEmployeeData() {
-                    fetch('https://marks-hotel.vercel.app/employees_api/employees_data/')
+                    fetch('https://marks-hotel-backend.onrender.com//employees_api/employees_data/')
                         .then(response => response.json())
                         .then(data => {
                             const tableBody = document.getElementById('employee-data');
@@ -161,7 +161,7 @@
 
                 // count data register
 
-                fetch("https://marks-hotel.vercel.app/authontication/registered-users-count/")
+                fetch("https://marks-hotel-backend.onrender.com//authontication/registered-users-count/")
                     .then(response => {
                         if (!response.ok) {
                             throw new Error("Network response was not ok");

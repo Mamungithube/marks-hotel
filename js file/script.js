@@ -1,5 +1,5 @@
 
-fetch("https://marks-hotel.vercel.app/api/bookings/")
+fetch("https://marks-hotel-backend.onrender.com//api/bookings/")
     .then(response => response.json())
     .then(data => {
         data.forEach(item => {

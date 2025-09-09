@@ -18,7 +18,7 @@ function addContact(event) {
         problem: message
     };
 
-    fetch('https://marks-hotel.vercel.app/gust/contect/', {
+    fetch('https://marks-hotel-backend.onrender.com//gust/contect/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

@@ -14,7 +14,7 @@ const handleRegister = (event) => {
   
     console.log("Registration data", registerData);
   
-    fetch("https://marks-hotel.vercel.app/authontication/register/", {
+    fetch("https://marks-hotel-backend.onrender.com//authontication/register/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -43,7 +43,7 @@ const handleRegister = (event) => {
       username: formData.get("username"),
       password: formData.get("password"),
     };
-    fetch("https://marks-hotel.vercel.app/authontication/login/", {
+    fetch("https://marks-hotel-backend.onrender.com//authontication/login/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -95,7 +95,7 @@ function handleLogout(event) {
         return;
     }
 
-    fetch("https://marks-hotel.vercel.app/authontication/logout/", {
+    fetch("https://marks-hotel-backend.onrender.com//authontication/logout/", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
